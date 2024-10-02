@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-color: #f5f5f5;
 }
 
@@ -10,7 +10,7 @@ body {
 .menus {
     position: fixed;
     top: 2vh;
-    right: 2vh;
+    left: 2vh;
     z-index: 1000;
     height: 5vh;
     cursor: pointer;
@@ -24,8 +24,8 @@ body {
 .top {
     position: fixed;
     top: -16vh;
-    left: -200px;
-    right: -200px;
+    left: -31.34796238244514vh;
+    right: -31.34796238244514vh;
     height: 24vh;
     background-color: #ca4a4a;
     z-index: 1000;
@@ -35,17 +35,17 @@ body {
 .menu {
     position: fixed;
     top: 8vh;
-    right: -200px;
-    width: 200px;
+    left: -31.34796238244514vh;
+    width: 31.34796238244514vh;
     bottom: -6vh;
     background-color: #d91616;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease-in-out;
+    box-shadow: 0 0.31347962382445144vh 1.567398119122257vh rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
     z-index: 1000;
 }
 
 .menu.active {
-    right: 0;
+    left: 0;
 }
 
 /* Estilos para los elementos del menú */
@@ -56,8 +56,8 @@ body {
 }
 
 .menu li {
-    padding: 15px;
-    border-bottom: 1px solid #430909b7;
+    padding: 2.3510971786833856vh;
+    border-bottom: 0.15673981191222572vh solid #430909b7;
     cursor: pointer;
 }
 
@@ -65,21 +65,29 @@ body {
     background-color: #2c0909a9;
 }
 
+/* Estilos para el contenido principal */
+.main-content {
+    margin-left: 31.34796238244514vh;
+    padding: 2vh;
+}
+
 /* Estilos para los mini-menus */
 .mini-menus {
     position: fixed;
     top: 30vh;
-    right: 220px;
+    left: calc(100vw - 35vw);
     z-index: 1001;
 }
 
 .mini-menu {
     background-color: #d91616;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
     display: none;
+    width: 25vw;
+    max-width: 300px;
 }
 
 .mini-menu ul {
@@ -89,7 +97,7 @@ body {
 }
 
 .mini-menu li {
-    padding: 10px;
+    padding: 1rem;
     cursor: pointer;
 }
 
@@ -99,28 +107,69 @@ body {
 
 /* Estilos para el formulario de agregar vehículo */
 .mini-menu form {
-    margin-top: 15px;
+    margin-top: 1rem;
 }
 
 .mini-menu input[type="text"] {
     width: 100%;
-    height: 30px;
-    margin-bottom: 10px;
-    padding: 5px;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
 }
 
 .mini-menu button {
     width: 100%;
-    height: 30px;
+    height: 2.5rem;
     background-color: #ca4a4a;
     color: white;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .mini-menu button:hover {
     background-color: #d91616;
+}
+
+/* Media queries para ajustar el tamaño de los mini-menus en diferentes pantallas */
+@media screen and (max-width: 768px) {
+    .menu {
+        width: 23.510971786833856vh;
+    }
+
+    .main-content {
+        margin-left: 23.510971786833856vh;
+    }
+
+    .mini-menus {
+        top: 40vh;
+        left: calc(100vw - 45vw);
+    }
+
+    .mini-menu {
+        width: 40vw;
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu {
+        width: 18.808777429467085vh;
+    }
+
+    .main-content {
+        margin-left: 18.808777429467085vh;
+    }
+
+    .mini-menus {
+        top: 50vh;
+        left: calc(100vw - 55vw);
+    }
+
+    .mini-menu {
+        width: 60vw;
+        max-width: 400px;
+    }
 }
 
 /* Estilos para la ventana emergente de reservas */
@@ -135,22 +184,22 @@ body {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+    padding-top: 9.404388714733543vh;
 }
 
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 3.134796238244514vh;
+    border: 0.15673981191222572vh solid #888;
     width: 80%;
-    max-width: 600px;
+    max-width: 94.04388714733543vh;
 }
 
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 4.38871473354232vh;
     font-weight: bold;
     cursor: pointer;
 }
@@ -173,8 +222,8 @@ body {
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 0.15673981191222572vh solid #ddd;
+    padding: 1.2539184952978057vh;
     text-align: left;
 }
 
@@ -186,43 +235,10 @@ th {
     background-color: #d91616;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 0.7836990595611285vh 1.567398119122257vh;
     cursor: pointer;
 }
 
 #reservationTable button:hover {
     background-color: #ca4a4a;
-}
-
-/* Media queries para responsividad */
-@media screen and (max-width: 768px) {
-    .menu {
-        width: 150px;
-    }
-
-    .mini-menus {
-        top: 35vh;
-        right: 180px;
-    }
-
-    .modal-content {
-        width: 90%;
-        max-width: 400px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .menu {
-        width: 120px;
-    }
-
-    .mini-menus {
-        top: 40vh;
-        right: 140px;
-    }
-
-    .modal-content {
-        width: 95%;
-        max-width: 300px;
-    }
 }

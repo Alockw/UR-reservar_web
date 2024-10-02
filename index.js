@@ -46,92 +46,82 @@ function openReservationModal() {
     populateReservationTable();
 }
 
-// Cerrar ventana emergente al hacer clic en el botón cerrar
+// Cerrar ventana emergente de reservas
 closeBtn.onclick = function() {
     reservationModal.style.display = 'none';
 };
 
-// Cerrar ventana emergente al hacer clic fuera
-window.onclick = function(event) {
-    if (event.target == reservationModal) {
-        reservationModal.style.display = 'none';
-    }
-};
-
-// Poblar la tabla de reservas
+// Rellenar tabla de reservas
 function populateReservationTable() {
     reservationBody.innerHTML = '';
     reservations.forEach(reservation => {
-        let row = document.createElement('tr');
+        const row = document.createElement('tr');
         row.innerHTML = `
             <td>${reservation.id}</td>
             <td>${reservation.type}</td>
             <td>${reservation.time}</td>
             <td>${reservation.availability}</td>
-            <td><button onclick="reserve(${reservation.id})">Reservar</button></td>
+            <td><button onclick="cancelReservation('${reservation.id}')">Cancelar</button></td>
         `;
         reservationBody.appendChild(row);
     });
 }
 
-// Función para realizar una reserva
-function reserve(id) {
-    const reservation = reservations.find(r => r.id === id);
-    if (reservation && reservation.availability === 'Disponible' && vehicles.length > 0) {
-        const vehicleSelect = prompt("Seleccione un vehículo:\n" + vehicles.map((v, i) => `${i+1}. ${v}`).join("\n"));
-        
-        if (vehicleSelect && !isNaN(vehicleSelect) && vehicleSelect > 0 && vehicleSelect <= vehicles.length) {
-            reservation.availability = 'Reservado';
-            reservedVehicles.push({id: id, vehicle: vehicles[vehicleSelect - 1]});
-            populateReservationTable();
-            updateReservedVehiclesList();
-            alert("Reserva realizada con éxito.");
-        } else {
-            alert("Selección inválida. Por favor, inténtelo nuevamente.");
-        }
-    } else {
-        alert("No hay vehículos disponibles o la reserva ya está ocupada.");
+// Cancelar reserva
+function cancelReservation(id) {
+    const index = reservations.findIndex(res => res.id === id);
+    if (index !== -1) {
+        reservations.splice(index, 1);
+        populateReservationTable();
     }
 }
 
-// Función para agregar un vehículo
+// Agregar vehículo
 function addVehicle() {
     const plate = document.getElementById('vehiclePlate').value;
     const brand = document.getElementById('vehicleBrand').value;
     const model = document.getElementById('vehicleModel').value;
 
     if (plate && brand && model) {
-        vehicles.push(`${brand} ${model} (${plate})`);
-        alert("Vehículo agregado con éxito.");
+        vehicles.push({plate, brand, model});
         document.getElementById('addVehicleForm').reset();
-    } else {
-        alert("Por favor, complete todos los campos.");
+        updateReservedVehiclesList();
     }
 }
 
-// Actualizar la lista de vehículos reservados en el menú de usuario
+// Actualizar lista de vehículos reservados
 function updateReservedVehiclesList() {
+    const userInfo = document.getElementById('userInfo');
     const reservedVehiclesList = document.getElementById('reservedVehiclesList');
+
+    userInfo.textContent = `Bienvenido/a, usuario!`;
     reservedVehiclesList.innerHTML = '';
-    reservedVehicles.forEach((rv, index) => {
+
+    vehicles.forEach(vehicle => {
         const li = document.createElement('li');
-        li.textContent = `${index + 1}. Reserva ${rv.id}: ${rv.vehicle}`;
+        li.textContent = `${vehicle.brand} ${vehicle.model} (${vehicle.plate})`;
         reservedVehiclesList.appendChild(li);
     });
 }
 
-// Actualizar información del usuario
-function updateUserInformation() {
-    const userInfo = document.getElementById('userInfo');
-    userInfo.innerHTML = `
-        <h4>Usuario: Juan Pérez</h4>
-        <p>Vehículos registrados: ${vehicles.length}</p>
-        <p>Reservas activas: ${reservedVehicles.length}</p>
-    `;
-}
+// Simular inicio de sesión
+updateReservedVehiclesList();
 
-// Inicialización
-updateUserInformation();
+// Escuchar eventos de cerrar sesión
+document.querySelector('.usuario li:last-child').addEventListener('click', () => {
+    localStorage.clear();
+    window.location.reload();
+});
 
-// Evento para actualizar la información del usuario cada vez que se abre el menú
-document.querySelector('.mini-menu.usuario').addEventListener('click', updateUserInformation);
+// Verificar si hay datos guardados en localStorage
+window.onload = function() {
+    if (localStorage.getItem('vehicles')) {
+        vehicles = JSON.parse(localStorage.getItem('vehicles'));
+        updateReservedVehiclesList();
+    }
+};
+
+// Guardar datos en localStorage cuando se cierra la página
+window.onbeforeunload = function() {
+    localStorage.setItem('vehicles', JSON.stringify(vehicles));
+};
