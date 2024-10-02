@@ -7,104 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Elemento superior del menú hamburguesa -->
     <ul class="top" id="top">
     </ul>
-    
-    <!-- Imagen del botón del menú hamburguesa -->
-    <img class="menus" id="menus" src="img/descarga.png" alt="Logo del Rosario">
-    
-    <!-- Menú principal -->
+    <img class="menus" id="menus" src="img/descarga .png" alt="Logo del Rosario">
     <ul class="menu" id="menu">
         <li>Inicio</li>
-        <li>Reservas</li>
-        <li>Histórico</li>
-        <li>Agregar Vehículo</li>
-        <li>Usuario</li>
-        <li>Ayuda</li>
+        <li>Servicios</li>
+        <li>Productos</li>
+        <li>Contacto</li>
     </ul>
-
-    <!-- Mini-menus -->
-    <div class="mini-menus">
-        <!-- Reservas -->
-        <div class="mini-menu reservas" style="display: none;">
-            <h3>Reservas</h3>
-            <button onclick="openReservationModal()">Ver Reservas</button>
-        </div>
-
-        <!-- Histórico -->
-        <div class="mini-menu historico" style="display: none;">
-            <h3>Histórico</h3>
-            <ul>
-                <li>Reservas Pasadas</li>
-                <li>Facturas</li>
-                <li>Actividad Reciente</li>
-            </ul>
-        </div>
-
-        <!-- Agregar Vehículo -->
-        <div class="mini-menu agregar-vehiculo" style="display: none;">
-            <h3>Agregar Vehículo</h3>
-            <form id="addVehicleForm">
-                <input type="text" id="vehiclePlate" placeholder="Placa del vehículo">
-                <input type="text" id="vehicleBrand" placeholder="Marca del vehículo">
-                <input type="text" id="vehicleModel" placeholder="Modelo del vehículo">
-                <button onclick="addVehicle()">Agregar Vehículo</button>
-            </form>
-        </div>
-
-        <!-- Usuario -->
-        <div class="mini-menu usuario" style="display: none;">
-            <h3>Usuario</h3>
-            <ul>
-                <li><button onclick="updateUserInformation()">Actualizar Información</button></li>
-                <li><button class="cerrar-sesion">Cerrar Sesión</button></li>
-            </ul>
-        </div>
-
-        <!-- Ayuda -->
-        <div class="mini-menu ayuda" style="display: none;">
-            <h3>Ayuda</h3>
-            <p>Contenido de ayuda aquí</p>
-        </div>
-    </div>
-
-    <!-- Ventana emergente de reservas -->
-    <div id="reservationModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <table id="reservationTableContainer">
-                <tr>
-                    <th>ID</th>
-                    <th>Tipo</th>
-                    <th>Hora</th>
-                    <th>Disponibilidad</th>
-                    <th>Opciones</th>
-                </tr>
-                <tbody id="reservationBody"></tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Modal para agregar un nuevo vehículo -->
-    <div id="addVehicleModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Agregar Vehículo</h2>
-            <form id="addVehicleForm">
-                <label for="vehiclePlate">Placa:</label>
-                <input type="text" id="vehiclePlate" required>
-                
-                <label for="vehicleBrand">Marca:</label>
-                <input type="text" id="vehicleBrand" required>
-                
-                <label for="vehicleModel">Modelo:</label>
-                <input type="text" id="vehicleModel" required>
-                
-                <button type="submit">Guardar</button>
-            </form>
-        </div>
-    </div>
 
     <script src="index.js"></script>
 </body>

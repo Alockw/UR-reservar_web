@@ -12,24 +12,11 @@ body {
 }
 
 .login-container {
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.724);
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.logo {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-}
-
-h2 {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(210, 27, 45, 0.1);
     text-align: center;
-    margin-bottom: 20px;
 }
 
 form {
@@ -41,23 +28,51 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"], input[type="password"] {
-    height: 40px;
+input[type="text"] {
+    padding: 10px;
     margin-bottom: 15px;
-    padding: 5px;
-    border: 1px solid #4a1313;
-    border-radius: 3px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 button[type="submit"] {
-    background-color: #fa0808;
-    color: white;
     padding: 10px;
+    background-color: #da1111;
+    color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5%;
 }
 
 button[type="submit"]:hover {
-    background-color: #6d1414;
+    background-color: #360a0a;
+}
+
+.logo {
+    width: 200px;
+    /* Ajusta según sea necesario */
+    height: auto;
+    /* Mantiene la proporción */
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        padding: 15px;
+    }
+    input[type="email"], button[type="submit"] {
+        padding: 8px;
+        font-size: 14px;
+    }
 }
