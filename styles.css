@@ -1,3 +1,4 @@
+/* Estilos globales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,6 +6,7 @@ body {
     background-color: #f5f5f5;
 }
 
+/* Estilos para el menú hamburguesa */
 .menus {
     position: fixed;
     top: 2vh;
@@ -13,7 +15,7 @@ body {
     height: 5vh;
     cursor: pointer;
     display: flex;
-}   
+}
 
 .menus:hover {
     filter: brightness(120%);
@@ -29,8 +31,9 @@ body {
     z-index: 1000;
     display: flex;
 }
+
 .menu {
-    position: fixed;    
+    position: fixed;
     top: 8vh;
     right: -200px;
     width: 200px;
@@ -45,6 +48,7 @@ body {
     right: 0;
 }
 
+/* Estilos para los elementos del menú */
 .menu ul {
     list-style-type: none;
     padding: 0;
@@ -59,4 +63,166 @@ body {
 
 .menu li:hover {
     background-color: #2c0909a9;
+}
+
+/* Estilos para los mini-menus */
+.mini-menus {
+    position: fixed;
+    top: 30vh;
+    right: 220px;
+    z-index: 1001;
+}
+
+.mini-menu {
+    background-color: #d91616;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    display: none;
+}
+
+.mini-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mini-menu li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.mini-menu li:hover {
+    background-color: #2c0909a9;
+}
+
+/* Estilos para el formulario de agregar vehículo */
+.mini-menu form {
+    margin-top: 15px;
+}
+
+.mini-menu input[type="text"] {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.mini-menu button {
+    width: 100%;
+    height: 30px;
+    background-color: #ca4a4a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.mini-menu button:hover {
+    background-color: #d91616;
+}
+
+/* Estilos para la ventana emergente de reservas */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para la tabla de reservas */
+#reservationTableContainer {
+    overflow-x: auto;
+}
+
+#reservationTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#reservationTable button {
+    background-color: #d91616;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#reservationTable button:hover {
+    background-color: #ca4a4a;
+}
+
+/* Media queries para responsividad */
+@media screen and (max-width: 768px) {
+    .menu {
+        width: 150px;
+    }
+
+    .mini-menus {
+        top: 35vh;
+        right: 180px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu {
+        width: 120px;
+    }
+
+    .mini-menus {
+        top: 40vh;
+        right: 140px;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 300px;
+    }
 }
