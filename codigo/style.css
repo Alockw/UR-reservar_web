@@ -11,6 +11,8 @@ body {
     background-position: center;
 }
 
+
+
 .login-container {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 30px;
@@ -71,7 +73,9 @@ button[type="submit"]:hover {
     .login-container {
         padding: 15px;
     }
-    input[type="email"], button[type="submit"] {
+
+    input[type="email"],
+    button[type="submit"] {
         padding: 8px;
         font-size: 14px;
     }

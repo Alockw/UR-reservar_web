@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 06-10-2024 a las 18:20:29
+-- Tiempo de generación: 04-11-2024 a las 15:50:57
 -- Versión del servidor: 8.0.39-0ubuntu0.24.04.2
 -- Versión de PHP: 8.3.6
 
@@ -21,6 +21,15 @@ SET time_zone = "+00:00";
 -- Base de datos: `parkease_bd`
 --
 
+DELIMITER $$
+--
+-- Funciones
+--
+CREATE DEFINER=`raspberry`@`%` FUNCTION `determinarEstadoParqueadero` (`id_estado` INT) RETURNS VARCHAR(10) CHARSET utf8mb4 DETERMINISTIC BEGIN
+    DECLARE estado VARCHAR(10)$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -37,9 +46,10 @@ CREATE TABLE `ESTADO` (
 --
 
 INSERT INTO `ESTADO` (`ID_ESTADO`, `DESCRIPCION_ESTADO`) VALUES
-(1, 'DISPONILBE'),
+(1, 'DISPONIBLE'),
 (2, 'OCUPADO'),
-(3, 'RESERVADO');
+(3, 'RESERVADO'),
+(4, 'PERDIDO');
 
 -- --------------------------------------------------------
 
@@ -51,59 +61,60 @@ CREATE TABLE `PARQUEADERO` (
   `ID_PARQUEADERO` int NOT NULL,
   `ID_TIPO_VEHICULO_FK` int NOT NULL,
   `ID_PISO_FK` int NOT NULL,
-  `LOCACION` int NOT NULL
+  `LOCACION` int NOT NULL,
+  `estado_actual` enum('DISPONIBLE','OCUPADO','RESERVADO') DEFAULT 'DISPONIBLE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `PARQUEADERO`
 --
 
-INSERT INTO `PARQUEADERO` (`ID_PARQUEADERO`, `ID_TIPO_VEHICULO_FK`, `ID_PISO_FK`, `LOCACION`) VALUES
-(1, 1, 1, 1),
-(2, 1, 1, 2),
-(3, 1, 1, 3),
-(4, 1, 1, 4),
-(5, 1, 1, 5),
-(6, 1, 1, 6),
-(7, 1, 1, 7),
-(8, 1, 1, 8),
-(9, 1, 1, 9),
-(10, 1, 1, 10),
-(11, 1, 1, 11),
-(12, 1, 1, 12),
-(13, 1, 1, 13),
-(14, 1, 1, 14),
-(15, 1, 1, 15),
-(16, 2, 2, 1),
-(17, 2, 2, 2),
-(18, 2, 2, 3),
-(19, 2, 2, 4),
-(20, 2, 2, 5),
-(21, 2, 2, 6),
-(22, 2, 2, 7),
-(23, 2, 2, 8),
-(24, 2, 2, 9),
-(25, 2, 2, 10),
-(26, 2, 2, 11),
-(27, 2, 2, 12),
-(28, 2, 2, 13),
-(29, 2, 2, 14),
-(30, 2, 2, 15),
-(31, 2, 3, 1),
-(32, 2, 3, 2),
-(33, 2, 3, 3),
-(34, 2, 3, 4),
-(35, 2, 3, 5),
-(36, 2, 3, 6),
-(37, 2, 3, 7),
-(38, 2, 3, 8),
-(39, 2, 3, 9),
-(40, 2, 3, 10),
-(41, 2, 3, 11),
-(42, 2, 3, 12),
-(43, 2, 3, 13),
-(44, 2, 3, 14),
-(45, 2, 3, 15);
+INSERT INTO `PARQUEADERO` (`ID_PARQUEADERO`, `ID_TIPO_VEHICULO_FK`, `ID_PISO_FK`, `LOCACION`, `estado_actual`) VALUES
+(1, 1, 1, 1, 'DISPONIBLE'),
+(2, 1, 1, 2, 'DISPONIBLE'),
+(3, 1, 1, 3, 'DISPONIBLE'),
+(4, 1, 1, 4, 'DISPONIBLE'),
+(5, 1, 1, 5, 'DISPONIBLE'),
+(6, 1, 1, 6, 'DISPONIBLE'),
+(7, 1, 1, 7, 'DISPONIBLE'),
+(8, 1, 1, 8, 'DISPONIBLE'),
+(9, 1, 1, 9, 'DISPONIBLE'),
+(10, 1, 1, 10, 'DISPONIBLE'),
+(11, 1, 1, 11, 'DISPONIBLE'),
+(12, 1, 1, 12, 'DISPONIBLE'),
+(13, 1, 1, 13, 'DISPONIBLE'),
+(14, 1, 1, 14, 'DISPONIBLE'),
+(15, 1, 1, 15, 'DISPONIBLE'),
+(16, 2, 2, 1, 'DISPONIBLE'),
+(17, 2, 2, 2, 'DISPONIBLE'),
+(18, 2, 2, 3, 'DISPONIBLE'),
+(19, 2, 2, 4, 'DISPONIBLE'),
+(20, 2, 2, 5, 'DISPONIBLE'),
+(21, 2, 2, 6, 'DISPONIBLE'),
+(22, 2, 2, 7, 'DISPONIBLE'),
+(23, 2, 2, 8, 'DISPONIBLE'),
+(24, 2, 2, 9, 'DISPONIBLE'),
+(25, 2, 2, 10, 'DISPONIBLE'),
+(26, 2, 2, 11, 'DISPONIBLE'),
+(27, 2, 2, 12, 'DISPONIBLE'),
+(28, 2, 2, 13, 'DISPONIBLE'),
+(29, 2, 2, 14, 'DISPONIBLE'),
+(30, 2, 2, 15, 'DISPONIBLE'),
+(31, 2, 3, 1, 'DISPONIBLE'),
+(32, 2, 3, 2, 'DISPONIBLE'),
+(33, 2, 3, 3, 'DISPONIBLE'),
+(34, 2, 3, 4, 'DISPONIBLE'),
+(35, 2, 3, 5, 'DISPONIBLE'),
+(36, 2, 3, 6, 'DISPONIBLE'),
+(37, 2, 3, 7, 'DISPONIBLE'),
+(38, 2, 3, 8, 'DISPONIBLE'),
+(39, 2, 3, 9, 'DISPONIBLE'),
+(40, 2, 3, 10, 'DISPONIBLE'),
+(41, 2, 3, 11, 'DISPONIBLE'),
+(42, 2, 3, 12, 'DISPONIBLE'),
+(43, 2, 3, 13, 'DISPONIBLE'),
+(44, 2, 3, 14, 'DISPONIBLE'),
+(45, 2, 3, 15, 'DISPONIBLE');
 
 -- --------------------------------------------------------
 
@@ -165,9 +176,30 @@ CREATE TABLE `RESERVA` (
   `ID_RESERVA` int NOT NULL,
   `ID_PARQUEADERO_FK` int NOT NULL,
   `ID_PERSONA_FK_FK` int NOT NULL,
+  `PLACA` varchar(10) DEFAULT NULL,
   `ID_ESTADO_FK` int NOT NULL,
-  `HORA_RESERVA` datetime DEFAULT NULL
+  `HORA_RESERVA` datetime DEFAULT NULL,
+  `HORA_EXPIRACION` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Disparadores `RESERVA`
+--
+DELIMITER $$
+CREATE TRIGGER `actualizarEstadoParqueadero` AFTER INSERT ON `RESERVA` FOR EACH ROW BEGIN
+    DECLARE nuevo_estado VARCHAR(10)$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `actualizarEstadoParqueaderoUpdate` AFTER UPDATE ON `RESERVA` FOR EACH ROW BEGIN
+    DECLARE nuevo_estado VARCHAR(10)$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `actualizar_estado_reserva` AFTER UPDATE ON `RESERVA` FOR EACH ROW BEGIN
+    IF NEW.ID_ESTADO_FK = 3 AND NEW.HORA_EXPIRACION <= NOW() THEN
+        UPDATE RESERVA
+        SET ID_ESTADO_FK = 4
+        WHERE ID_RESERVA = NEW.ID_RESERVA$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -226,7 +258,7 @@ CREATE TABLE `USUARIO` (
 --
 
 INSERT INTO `USUARIO` (`ID_USUARIO`, `PASAPORTE_VIRTUAL`, `CONTRASEÑA`, `ID_TIPO_FK`) VALUES
-(1, 'ivanda.moreno', '41533f07825e9533126e3e4c02f1bb25669d8557693963d811891981031a2398', 1),
+(1, 'ivanda.moreno', '937e08b9288dda512120e6a9c288fe799d6393a05dc3fc644ec707eb21ed85f9', 1),
 (2, 'administrador', '93a31b364bbea09fe318004dccff911248f0c3862aed620d08564ecc151f31d5', 2),
 (3, 'personal', '39e58b4e55aeb30519f5b244660055566a0c0880efbfc4d945f2a6ebe8df9189', 3),
 (4, 'juanpa.arango', '41533f07825e9533126e3e4c02f1bb25669d8557693963d811891981031a2398', 1),
@@ -345,7 +377,7 @@ ALTER TABLE `VEHICULO_PERSONA`
 -- AUTO_INCREMENT de la tabla `ESTADO`
 --
 ALTER TABLE `ESTADO`
-  MODIFY `ID_ESTADO` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_ESTADO` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `PARQUEADERO`
@@ -444,6 +476,16 @@ ALTER TABLE `VEHICULO`
 ALTER TABLE `VEHICULO_PERSONA`
   ADD CONSTRAINT `VEHICULO_PERSONA_ibfk_1` FOREIGN KEY (`ID_VEHICULO_FK`) REFERENCES `VEHICULO` (`ID_VEHICULO`),
   ADD CONSTRAINT `VEHICULO_PERSONA_ibfk_2` FOREIGN KEY (`ID_PERSONA_FK`) REFERENCES `PERSONA` (`ID_PERSONA`);
+
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`raspberry`@`%` EVENT `actualizar_reservas_expiradas` ON SCHEDULE EVERY 1 MINUTE STARTS '2024-11-04 03:55:11' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE RESERVA
+    SET ID_ESTADO_FK = 4
+    WHERE ID_ESTADO_FK = 3 AND HORA_EXPIRACION <= NOW()$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

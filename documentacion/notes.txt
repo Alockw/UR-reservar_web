@@ -1,3 +1,8 @@
 piconnect - piconnect
 
 bkup-prd01 - Empanadas2045/
+
+raspberry - Empanadas2045/
+
+parkease-ur.brazilsouth.cloudapp.azure.com
+
